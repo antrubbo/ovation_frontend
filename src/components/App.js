@@ -7,6 +7,11 @@ import UserPage from "./pages/UserPage"
 import Navbar from "./Navbar"
 import Header from "./Header"
 import { Redirect, Route, Switch } from "react-router-dom";
+import events from "../data/events"
+import artists from "../data/artists"
+import tickets from "../data/tickets"
+import users from "../data/users"
+
 
 
 function App() {
@@ -22,7 +27,7 @@ function App() {
           <EventPage />
         </Route>
         <Route exact path="/events">
-          <EventsList />
+          <EventsList events={events}  />
         </Route>
         <Route exact path="/login">
           <SignupLogin />
