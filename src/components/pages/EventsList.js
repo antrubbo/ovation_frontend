@@ -11,9 +11,11 @@ function EventList ( {events} ) {
     return (
 
         <section> 
-            <Search />
-            <h1>Event List</h1>
-            {allEvents}
+            <div>
+                <Search />
+                <h1>Event List</h1>
+                {allEvents} 
+            </div>
         </section>
         
     )
