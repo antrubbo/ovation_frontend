@@ -1,6 +1,15 @@
 function Search () {
 
-    return <h1>Search</h1>
+    return (
+    <div>
+        <input
+        type="text"
+        placeholder="Search..."
+        /> 
+    </div>
+        
+    )
+
     }
     
     export default Search

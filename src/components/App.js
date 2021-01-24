@@ -33,7 +33,7 @@ function App() {
           <SignupLogin />
         </Route>
         <Route exact path="/">
-          <Home />
+          <Home events={events}/>
         </Route>
     </Switch>
     </div>
