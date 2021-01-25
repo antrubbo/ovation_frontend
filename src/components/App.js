@@ -7,14 +7,25 @@ import UserPage from "./pages/UserPage"
 import Navbar from "./Navbar"
 import Header from "./Header"
 import { Redirect, Route, Switch } from "react-router-dom";
-import events from "../data/events"
+// import events from "../data/events"
 import artists from "../data/artists"
 import tickets from "../data/tickets"
 import users from "../data/users"
+import react, {useEffect, useState} from "react"
 
 
 
 function App() {
+  const baseUrl = "http://localhost:3000"
+
+  const [events, setEvents] = useState([])
+
+  useEffect(() => {
+    fetch(`${baseUrl}/events`)
+      .then(r => r.json())
+      .then(events => setEvents(events))
+  },[])
+
   return (
     <div>
       <Navbar />
