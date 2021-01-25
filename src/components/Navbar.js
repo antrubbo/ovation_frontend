@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 
-function Navbar () {
+function Navbar ({onLogOut}) {
 
     return (
         <nav className="navbar">
@@ -11,7 +11,7 @@ function Navbar () {
             <NavLink exact to="/events" className="nav-button">
                 All Events
             </NavLink>
-                
+            <button onClick={onLogOut}>Log out</button>
         </nav>
          
     )

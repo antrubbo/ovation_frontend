@@ -13,11 +13,10 @@ import tickets from "../data/tickets"
 import users from "../data/users"
 import react, {useEffect, useState} from "react"
 
-
-
 function App() {
   const baseUrl = "http://localhost:3000"
-
+  
+  const [currentUser, setCurrentUser] = useState(null)
   const [events, setEvents] = useState([])
 
   useEffect(() => {
@@ -26,9 +25,19 @@ function App() {
       .then(events => setEvents(events))
   },[])
 
+  function handleLogin() {
+    fetch("http://localhost:3000/autologin")
+      .then((r) => r.json())
+      .then(setCurrentUser);
+  }
+
+  function handleLogout() {
+    setCurrentUser(null);
+  }
+
   return (
     <div>
-      <Navbar />
+      <Navbar onLogOut={handleLogout}/>
       <Header />
       <Switch>
         <Route exact path="/user/:id">
@@ -41,7 +50,7 @@ function App() {
           <EventsList events={events}  />
         </Route>
         <Route exact path="/login">
-          <SignupLogin />
+          <SignupLogin onLogIn={handleLogin} currentUser={currentUser}/>
         </Route>
         <Route exact path="/">
           <Home events={events}/>
