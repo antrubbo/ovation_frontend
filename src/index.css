@@ -13,10 +13,12 @@ code {
 }
 
 .navbar {
+  display: flex;
   border-color: red;
   border-style: solid;
 }
 
 .nav-button {
-  margin-left: 5px; 
+  margin: auto; 
+  padding: 10px 10px;
 }

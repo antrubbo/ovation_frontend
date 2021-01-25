@@ -1,10 +1,14 @@
-function Search () {
+function Search ( {searched, setSearched }) {
+
 
     return (
+
     <div>
         <input
         type="text"
-        placeholder="Search..."
+        placeholder="Search by artist name..."
+        value={searched}
+        onChange={(e) => setSearched(e.target.value)}
         /> 
     </div>
         

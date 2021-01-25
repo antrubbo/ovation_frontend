@@ -1,6 +1,7 @@
 // import './components/App.css';
 import Home from "./pages/Home"
-import SignupLogin from "./pages/SignupLogin"
+import SignupPage from "./pages/SignupPage"
+import LoginPage from "./pages/LoginPage"
 import EventsList from "./pages/EventsList"
 import EventPage from "./pages/EventPage"
 import UserPage from "./pages/UserPage"
@@ -18,6 +19,7 @@ function App() {
   
   const [currentUser, setCurrentUser] = useState(null)
   const [events, setEvents] = useState([])
+  // console.log(currentUser)
 
   useEffect(() => {
     fetch(`${baseUrl}/events`)
@@ -28,32 +30,72 @@ function App() {
   function handleLogin() {
     fetch("http://localhost:3000/autologin")
       .then((r) => r.json())
-      .then(setCurrentUser);
+      .then(data => {
+        setCurrentUser(data)
+      });
+      <Redirect to="/" />
   }
 
   function handleLogout() {
     setCurrentUser(null);
+    <Redirect to="/"/>
+  }
+
+  function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+
+  function handleFormSubmit(formData) {
+    fetch(`${baseUrl}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      setCurrentUser(data)
+    })
   }
 
   return (
     <div>
-      <Navbar onLogOut={handleLogout}/>
       <Header />
+      <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} onLogOut={handleLogout}/>
       <Switch>
         <Route exact path="/user/:id">
-          <UserPage />
+          <UserPage currentUser={currentUser}/>
         </Route>
         <Route exact path="/events/:id">
-          <EventPage />
+          <EventPage currentUser={currentUser}/>
         </Route>
         <Route exact path="/events">
-          <EventsList events={events}  />
+          <EventsList shuffle={shuffle} events={events} />
         </Route>
         <Route exact path="/login">
-          <SignupLogin onLogIn={handleLogin} currentUser={currentUser}/>
+          <LoginPage onLogIn={handleLogin} currentUser={currentUser}/>
+        </Route>
+        <Route exact path="/signup">
+          <SignupPage currentUser={currentUser} handleFormSubmit={handleFormSubmit}/>
         </Route>
         <Route exact path="/">
-          <Home events={events}/>
+          <Home shuffle={shuffle} events={events}/>
         </Route>
     </Switch>
     </div>

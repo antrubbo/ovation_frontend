@@ -1,5 +1,7 @@
-function UserPage () {
-    return <h1>UserPage</h1>
+import User from "../User"
+
+function UserPage ({currentUser}) {
+    return (<User currentUser={currentUser}/>)
 }
 
 export default UserPage 
