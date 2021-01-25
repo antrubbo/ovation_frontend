@@ -25,13 +25,14 @@ function Home ( {events} ) {
 
     const fiveEvents = events.slice(0, 5).map((event) => {
         return (
-            <div class='home-event-card'>
+            <div key={event.id} className='home-event-card'>
                     <div className="event-image-div">
                         <img src={event.artist.picture} alt={event.name}></img>
                     </div>
                     <div className="event-text-content">
                         <h3>{event.name}</h3>
-                        <p>{event.date}</p>
+                        <p>Where -- {event.location} </p>
+                        <p>When -- {event.date}</p>
                     </div>
                 </div>
         )
