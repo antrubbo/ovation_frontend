@@ -9,15 +9,16 @@ import Navbar from "./Navbar"
 import Header from "./Header"
 import { Redirect, Route, Switch } from "react-router-dom";
 // import events from "../data/events"
-import artists from "../data/artists"
-import tickets from "../data/tickets"
-import users from "../data/users"
+// import artists from "../data/artists"
+// import tickets from "../data/tickets"
+// import users from "../data/users"
 
 function App() {
   const baseUrl = "http://localhost:3000"
   
   const [currentUser, setCurrentUser] = useState(null)
   const [events, setEvents] = useState([])
+  const [errors, setErrors] = useState("")
   
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function App() {
       .then(data => {
         setCurrentUser(data)
       });
-      <Redirect to="/" />
+      // <Redirect to="/" />
   }
 
   function handleLogout() {
@@ -59,20 +60,24 @@ function App() {
     return array;
   }
 
-  function handleFormSubmit(formData) {
-    fetch(`${baseUrl}/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(formData)
-    })
-    .then(resp => resp.json())
-    .then(data => {
-      setCurrentUser(data)
-      
-    })
-  }
+  // function handleFormSubmit(formData) {
+  //   fetch(`${baseUrl}/users`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(formData)
+  //   })
+  //   .then(resp => resp.json())
+  //   .then(data => {
+  //     if(data.errors) {
+  //       setErrors(data.errors)
+  //     } else {
+  //       setCurrentUser(data)
+  //       setErrors("")
+  //     }
+  //   })
+  // }
 
   return (
     <div>
@@ -92,7 +97,7 @@ function App() {
           <LoginPage onLogIn={handleLogin} currentUser={currentUser}/>
         </Route>
         <Route exact path="/signup">
-          <SignupPage currentUser={currentUser} handleFormSubmit={handleFormSubmit}/>
+          <SignupPage currentUser={currentUser} errors={errors} setErrors={setErrors} setCurrentUser={setCurrentUser} baseUrl={baseUrl}/>
         </Route>
         <Route exact path="/">
           <Home shuffle={shuffle} events={events}/>
