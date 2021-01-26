@@ -19,6 +19,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [events, setEvents] = useState([])
   const [errors, setErrors] = useState("")
+  const [tickets, setTickets] = useState([])
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
   
 
   useEffect(() => {
@@ -27,13 +30,25 @@ function App() {
       .then(events => setEvents(events))
   },[])
 
-  function handleLogin() {
-    fetch("http://localhost:3000/autologin")
-      .then((r) => r.json())
-      .then(data => {
-        setCurrentUser(data)
-      });
-      // <Redirect to="/" />
+  function handleLogin(formData) {
+
+    // console.log(formData)
+
+    fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then((r) => r.json())
+        .then(data => {
+          if (data.name) {
+            setCurrentUser(data)
+          } else {
+            alert("Email not found!")
+          }
+        });
   }
 
   function handleLogout() {
@@ -60,23 +75,8 @@ function App() {
     return array;
   }
 
-  // function handleFormSubmit(formData) {
-  //   fetch(`${baseUrl}/users`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(formData)
-  //   })
-  //   .then(resp => resp.json())
-  //   .then(data => {
-  //     if(data.errors) {
-  //       setErrors(data.errors)
-  //     } else {
-  //       setCurrentUser(data)
-  //       setErrors("")
-  //     }
-  //   })
+  // if (currentUser) {
+  //   setTickets(currentUser.tickets)
   // }
 
   return (
@@ -88,16 +88,16 @@ function App() {
           <UserPage currentUser={currentUser}/>
         </Route>
         <Route exact path="/events/:id">
-          <EventPage currentUser={currentUser}/>
+          <EventPage tickets={tickets} setTickets={setTickets} currentUser={currentUser}/>
         </Route>
         <Route exact path="/events">
           <EventsList shuffle={shuffle} events={events} />
         </Route>
         <Route exact path="/login">
-          <LoginPage onLogIn={handleLogin} currentUser={currentUser}/>
+          <LoginPage onLogIn={handleLogin} currentUser={currentUser} name={name} setName={setName} email={email} setEmail={setEmail}/>
         </Route>
         <Route exact path="/signup">
-          <SignupPage currentUser={currentUser} errors={errors} setErrors={setErrors} setCurrentUser={setCurrentUser} baseUrl={baseUrl}/>
+          <SignupPage currentUser={currentUser} errors={errors} setErrors={setErrors} setCurrentUser={setCurrentUser} baseUrl={baseUrl} name={name} setName={setName} email={email} setEmail={setEmail}/>
         </Route>
         <Route exact path="/">
           <Home shuffle={shuffle} events={events}/>

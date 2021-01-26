@@ -7,8 +7,8 @@ User
 <!-- 4. Create a user (CREATE) -->
 
 Ticket
-1. Buy a ticket (CREATE)
-2. See a ticket 
+<!-- 1. Buy a ticket (CREATE) -->
+2. See a ticket  -- Work on Serializer 
 
 Events
 <!-- 1. See all events -- Done  -->
