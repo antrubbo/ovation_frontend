@@ -12,6 +12,32 @@ code {
     monospace;
 }
 
+.header {
+  text-align: center;
+}
+
+.main-home {
+  display: flex;
+  margin-top: 20px;
+}
+
+#homeH1 {
+  /* display: flex;
+  align-self: flex-start; */
+}
+
+.event-image-div:hover{
+  opacity: 0.5
+}
+
+img {
+  /* opacity: 0.5; */
+  height: auto; 
+  width: auto; 
+  max-width: 300px; 
+  /* max-height: 300px; */
+}
+
 .navbar {
   display: flex;
   border-color: red;
@@ -21,4 +47,8 @@ code {
 .nav-button {
   margin: auto; 
   padding: 10px 10px;
+}
+
+.home-card-event {
+  margin: 10px 10px;
 }

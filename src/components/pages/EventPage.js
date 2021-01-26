@@ -56,7 +56,7 @@ function EventPage ( {currentUser }) {
                 <div> 
                     <div className='event-page-info'> 
                         <div className="event-page-image"> 
-                            <img src={artist.picture}></img>
+                            <img src={artist.picture} alt={artist.name}></img>
                         </div>
                         <div className='event-page-content'>
                             <h3>{name}</h3>

@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 function EventItem ( {event}) {
     
     const { id, name, artist, description, time, date } = event 
+
+    function changeOpacity(evt) {
+        console.log(evt.target)
+    }
     
     return (
         <div className="event-card">
             <div className="event-image-div"> 
-                <img src={event.artist.picture} alt={event.artist.name}></img>
+                <img src={event.artist.picture} alt={event.artist.name} onMouseOver={changeOpacity}></img>
             </div>
             <div className="event-text-content">
                 <h1>{name}</h1> 

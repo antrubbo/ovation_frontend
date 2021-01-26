@@ -1,4 +1,4 @@
-// import './components/App.css';
+import {useEffect, useState} from "react"
 import Home from "./pages/Home"
 import SignupPage from "./pages/SignupPage"
 import LoginPage from "./pages/LoginPage"
@@ -12,14 +12,13 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import artists from "../data/artists"
 import tickets from "../data/tickets"
 import users from "../data/users"
-import react, {useEffect, useState} from "react"
 
 function App() {
   const baseUrl = "http://localhost:3000"
   
   const [currentUser, setCurrentUser] = useState(null)
   const [events, setEvents] = useState([])
-  // console.log(currentUser)
+  
 
   useEffect(() => {
     fetch(`${baseUrl}/events`)
@@ -71,6 +70,7 @@ function App() {
     .then(resp => resp.json())
     .then(data => {
       setCurrentUser(data)
+      
     })
   }
 
