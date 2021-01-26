@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player"
 
 
-function EventPage ( {currentUser }) {
+function EventPage ( {currentUser}) {
 
     const [event, setEvent] = useState(null)
 
@@ -16,26 +16,25 @@ function EventPage ( {currentUser }) {
             .then(newEvent => setEvent(newEvent))
     }, [params.id])
 
-    // console.log(event)
-
     function buyTicket(e) {
-        console.log(e.target)
-        console.log(currentUser)
 
-        const formBody = {
-            user_id: currentUser.id,
-            event_id: event.id
+        
+        if (currentUser) { 
+            const formBody = {
+                user_id: currentUser.id,
+                event_id: event.id
+            }
+
+            fetch("http://localhost:3000/tickets", {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(formBody)
+            })
+                .then(r => r.json())
+                .then(newTicket => alert(`${newTicket.event.name}`))
+        } else {
+            alert("You must sign up or login to buy a ticket")
         }
-
-        fetch("http://localhost:3000/tickets", 
-        {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(formBody)
-        })
-            .then(r => r.json())
-            .then(ticket => console.log(ticket))
-
     }
 
     if (event) {
@@ -43,7 +42,7 @@ function EventPage ( {currentUser }) {
         
         const pastPerformances = artist.past_performances.map((performance) => {
             return ( 
-                <div>
+                <div key={performance}>
                     <ReactPlayer
                         url={performance}
                     />
@@ -61,7 +60,7 @@ function EventPage ( {currentUser }) {
                         <div className='event-page-content'>
                             <h3>{name}</h3>
                             <p> {location} </p> 
-                            {currentUser ? <button onClick={buyTicket}> Buy a ticket </button> : null }
+                             <button onClick={buyTicket}> Buy a ticket </button>
                             <a href={event_url}> See this event on SongKick </a>
                         </div> 
                     </div>

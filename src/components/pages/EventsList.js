@@ -1,12 +1,11 @@
 import Search from "../Search"
 import EventItem from "../EventItem"
 // import events from "src/data"
-import react, {useState} from "react"
+import {useState} from "react"
 
 
 
 function EventList ( {events, shuffle} ) {
-
     const [searched, setSearched] = useState("")
 
     shuffle(events)

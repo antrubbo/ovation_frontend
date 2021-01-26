@@ -19,7 +19,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [events, setEvents] = useState([])
   const [errors, setErrors] = useState("")
-  const [tickets, setTickets] = useState([])
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   
@@ -29,27 +28,6 @@ function App() {
       .then(r => r.json())
       .then(events => setEvents(events))
   },[])
-
-  function handleLogin(formData) {
-
-    // console.log(formData)
-
-    fetch("http://localhost:3000/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        })
-        .then((r) => r.json())
-        .then(data => {
-          if (data.name) {
-            setCurrentUser(data)
-          } else {
-            alert("Email not found!")
-          }
-        });
-  }
 
   function handleLogout() {
     setCurrentUser(null);
@@ -75,26 +53,22 @@ function App() {
     return array;
   }
 
-  // if (currentUser) {
-  //   setTickets(currentUser.tickets)
-  // }
-
   return (
     <div>
       <Header />
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} onLogOut={handleLogout}/>
       <Switch>
         <Route exact path="/user/:id">
-          <UserPage currentUser={currentUser}/>
+          <UserPage email={email} setEmail={setEmail} name={name} setName={setName} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
         </Route>
         <Route exact path="/events/:id">
-          <EventPage tickets={tickets} setTickets={setTickets} currentUser={currentUser}/>
+          <EventPage  currentUser={currentUser}/>
         </Route>
         <Route exact path="/events">
           <EventsList shuffle={shuffle} events={events} />
         </Route>
         <Route exact path="/login">
-          <LoginPage onLogIn={handleLogin} currentUser={currentUser} name={name} setName={setName} email={email} setEmail={setEmail}/>
+          <LoginPage baseUrl={baseUrl} errors={errors} setErrors={setErrors} currentUser={currentUser} setCurrentUser={setCurrentUser} email={email} setEmail={setEmail}/>
         </Route>
         <Route exact path="/signup">
           <SignupPage currentUser={currentUser} errors={errors} setErrors={setErrors} setCurrentUser={setCurrentUser} baseUrl={baseUrl} name={name} setName={setName} email={email} setEmail={setEmail}/>

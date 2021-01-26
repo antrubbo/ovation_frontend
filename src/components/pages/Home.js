@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
 
 function Home ( {events, shuffle} ) {
 
-      shuffle(events)
-    //   console.log(events)
+    shuffle(events)
 
     const fiveEvents = events.slice(0, 5).map((event) => {
         return (
@@ -15,7 +15,8 @@ function Home ( {events, shuffle} ) {
                         <p>Where -- {event.location} </p>
                         <p>When -- {event.date}</p>
                     </div>
-                </div>
+                    <Link to={`/events/${event.id}`}>See Details</Link>
+            </div>
         )
     })
 
