@@ -1,22 +1,22 @@
 import {useEffect, useState} from "react"
+import {useHistory} from "react-router-dom"
 
 
 function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser}) {
-    
     const [clicked, setClicked] = useState(false)
-    // const [formData, setFormData] = useState({})
+    const history = useHistory()
+    
     
     useEffect(() => {
         fetch(`http://localhost:3000/users/${currentUser.id}`)
             .then(r => r.json())
             .then(newUser => setCurrentUser(newUser))
-    }, [currentUser.id])
+    }, [setCurrentUser, currentUser.id])
 
     function sellTicket (e) {
         let ticketId = e.target.id
 
-        fetch(`http://localhost:3000/tickets/${ticketId}`, 
-        {
+        fetch(`http://localhost:3000/tickets/${ticketId}`, {
             method: "DELETE"
         })
             .then(r=> r.json())
@@ -68,12 +68,23 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
                 .then(setClicked(!clicked))
     }
        
-
+    function handleDelete(evt) {
+        alert("Delete Account - Are you sure?")
+        fetch(`http://localhost:3000/users/${currentUser.id}`, {
+            method: "DELETE"
+        })
+        .then(r=> r.json())
+        .then(deletedUserObj => {
+            setCurrentUser("")
+        })
+        alert("Account Deleted!")
+        history.push("/")
+    }
     
 
     return(
         <div className="user-show">
-            {currentUser ? <h1>{currentUser.name}</h1> : null}
+            <h1>{currentUser.name}</h1>
             <div className="tickets-div">
                 <h3>Tickets:</h3>
                 <ul>
@@ -86,6 +97,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
                     <input type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
                     <input type="submit" value="Finalize Changes"></input>
             </form> : null}
+            <button onClick={handleDelete}>Delete Account</button>
         </div>
     )
 }

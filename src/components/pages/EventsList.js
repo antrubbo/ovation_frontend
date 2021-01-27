@@ -21,7 +21,7 @@ function EventList ( {events, shuffle} ) {
     return (
 
         <section> 
-            <div>
+            <div className='all-events'>
                 <Search searched={searched} setSearched={setSearched} />
                 <h1>Upcoming Events</h1>
                 {allEvents} 

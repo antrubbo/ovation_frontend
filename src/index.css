@@ -3,18 +3,6 @@
   
 } */
 
-/* .body::before {    
-  content: "";
-  background-image: url("https://www.thebalancecareers.com/thmb/p8dJbwwp5yyEzYA5SvuarUkZzRU=/1500x844/smart/filters:no_upscale()/GettyImages-639920934-5a0ce0d40d327a003650bbf4-5c09914f46e0fb00017183bb.jpg");
-  background-size: cover;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  opacity: 0.75;
-} */
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -24,42 +12,121 @@ body {
   -moz-osx-font-smoothing: grayscale;
 } 
 
+/* Images */
+img {
+  width: 100%;
+  margin: auto;
+  justify-content: center;
+  height: 250px;
+  /* height: auto; */
+} 
+
+ /* opacity: 0.5; */
+  /* height: auto; 
+  width: auto; 
+  max-width: 300px;  */
+  /* max-height: 300px; */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: rgb(120, 120, 120); */
+  /* position: fixed;
+  top: 0;
+  width: 100%; */
+}
+
+li {
+  float: left;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-.header {
-  text-align: center;
-}
-
-.main-home {
+/* .main-home {
   display: flex;
   margin-top: 20px;
-}
+} */
 
-#homeH1 {
+/* #homeH1 { */
   /* display: flex;
-  align-self: flex-start; */
-}
+  /* align-self: flex-start; */ 
+/* } */
 
 .event-image-div:hover{
   opacity: 0.5
 }
 
-img {
-  /* opacity: 0.5; */
-  height: auto; 
-  width: auto; 
-  max-width: 300px; 
-  /* max-height: 300px; */
+/* All Divs */
+
+
+/* .app {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  max-height: 3000px;
+  min-height: 0;  /* NEW */
+  /* min-width: 0;  */
+  /* grid-template-columns: minmax(0, 1fr) 300px; */
+
+/* } */ 
+
+/* .main-home { 
+  grid-area: 2 / 2 / 6 / 6; 
+  overflow: hidden;  /* NEW */
+  /* min-width: 0; 
+  display: flex;  */
+/* } */ 
+
+.home-event-card {
+  border-style: solid;
+  border-color: blue;
 }
 
-.navbar {
+.all-events {
+  grid-area: 2 / 2 / 6 / 6; 
+  margin: 0 auto;
+  width: 100%;
   display: flex;
+  overflow: hidden;  /* NEW */
+  min-width: 0; 
+  /* margin-top: 20px; */
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 2rem;
+  min-width: 0;
+  position: relative;
+  border: 2px solid var(--dark-turquoise);
+}
+
+
+.event-image-div {
+  border-style: solid;
+  border-color: pink;
+}
+
+/* .navbar { 
+  grid-area: 1 / 1 / 6 / 2; 
   border-color: red;
   border-style: solid;
-}
+  overflow: hidden;  /* NEW */
+  /* min-width: 0;  */
+  /* } */ 
+
+/* .header { 
+  grid-area: 1 / 2 / 2 / 6;
+  text-align: center; 
+  overflow: hidden;  /* NEW */
+
 
 .nav-button {
   margin: auto; 

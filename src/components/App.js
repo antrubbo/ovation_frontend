@@ -54,7 +54,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div class="app">
       <Header />
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} onLogOut={handleLogout}/>
       <Switch>
