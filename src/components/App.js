@@ -53,6 +53,19 @@ function App() {
     return array;
   }
 
+  // window.onscroll = function() {(stickyNav())};
+
+  // var navbar = document.getElementsByClassName('navbar')
+  // var sticky = navbar.offsetTop;
+
+  // function stickyNav() {
+  //   if (window.pageYOffset >= sticky) {
+  //     navbar.classList.add("sticky")
+  //   } else {
+  //     navbar.classList.remove("sticky");
+  //   }
+  // }
+
   return (
    
     <div className="app">
@@ -60,7 +73,7 @@ function App() {
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} onLogOut={handleLogout}/>
       </div>
       <div id="right" className="column"> 
-                    <Header />
+        <Header />
           <Switch>
             <Route exact path="/user/:id">
               <UserPage email={email} setEmail={setEmail} name={name} setName={setName} setCurrentUser={setCurrentUser} currentUser={currentUser}/>

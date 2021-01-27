@@ -41,14 +41,14 @@ function SignupPage({errors, setErrors, currentUser, setCurrentUser, baseUrl, na
     }
 
     return (
-        <div>
+        <div className="signup">
             {currentUser ? <h1>You've been successfully signed up, {currentUser.name}!</h1> : <h1>Sign Up</h1>}
             {errors !== "" ? errors.map(error => <p key={error} style={{ color: 'red' }}>*{error}</p>) : null}
             <form onSubmit={onFormSubmit} >
-                <input type="text" placeholder="Name.." value={name} onChange={evt => setName(evt.target.value)}></input>
-                <input type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
-                <input type="text" placeholder="Picture Url.." value={picture} onChange={evt => setPicture(evt.target.value)}></input>
-                <input type="submit"></input>
+                <input className="searchTerm" type="text" placeholder="Name.." value={name} onChange={evt => setName(evt.target.value)}></input>
+                <input className="searchTerm" type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
+                <input className="searchTerm" type="text" placeholder="Picture Url.." value={picture} onChange={evt => setPicture(evt.target.value)}></input>
+                <input className="searchButton" type="submit"></input>
             </form>
         </div>
     )

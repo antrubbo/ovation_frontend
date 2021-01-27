@@ -3,11 +3,13 @@ html {
 }
 
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fff3e6;
 } 
 
 .app {
@@ -16,6 +18,7 @@ body {
     margin: 0px;  /*removes default style*/
     display: flex;  /*enables flex content for its children*/
     box-sizing: border-box;
+    align-items: stretch;
 }
 
 .header {
@@ -24,24 +27,36 @@ body {
   /* justify-content: center; */
 }
 
-.header h1{
+.header h1 {
   justify-self: left;
   margin-right: 35px;
-  padding-left: 40px;
+  padding-left: 86px;
 }
 
 .header h3{
   margin-top: 32px;
 }
 
+/* Flexbox columns */
 .column {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+  /* height: 100%; */
+}
+
+#right {
+  padding-left: 6%;
+  padding-right: 2.35%;
 }
 
 
+#left {
+  background-color: #0d335d
+  /* height: 100%; */
+  /* position: relative; */
+}
 
-/* Images */
+/* Images and divs surrounding images  */
 img {
   width: 100%;
   object-fit: cover;
@@ -52,9 +67,24 @@ img {
 } 
 
 .event-image-div {
-  border-style: solid;
-  border-color: pink;
+  /* border-style: solid;
+  border-color: pink; */
   overflow: hidden; 
+}
+
+.event-image-div:hover{
+  opacity: 0.5
+}
+
+/* Div surrounding image on the one event page */
+.event-page-image {
+  overflow: hidden;
+  padding-top: 30px;
+}
+
+.event-page-image img {
+  padding-top: 30px;
+  width: 50%
 }
  /* opacity: 0.5; */
   /* height: auto; 
@@ -93,28 +123,72 @@ code {
 
 /* All Divs */
 .main-home {
-  flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: minmax(25vw, auto);
+  grid-gap: 1vw;
+  /* flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
+  /* overflow-y: auto; */
+  /* display: flex; */
+  /* flex-direction: row;  */
+  /* justify-content: space-between; */
+}
+
+#all-events-section {
+  margin-left: 40px;
+}
+
+.all-events {
+  /* flex-grow: 1;  
   overflow-y: auto;
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
-}
-.event-image-div:hover{
-  opacity: 0.5
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(25vw, auto);
+  grid-gap: 1vw;
+
 }
 
+.event-page-info {
+  padding: 20px 40px;
+}
+
+/* Authorization pages  */
+.login {
+  padding-left: 89px; 
+}
+.signup {
+  padding-left: 89px; 
+}
+
+
+
+.performances {
+  padding-left: 40px;
+}
+
+/* Cards */
 .home-event-card {
-  border-style: solid;
-  border-color: blue;
+  /* border-style: solid;
+  border-color: blue; */
   /* padding-left: 20px; */
-  width: 20%;
+  /* width: 20%; */
 }
 
-#left {
-  background-color: pink;
-  /* margin-right: 20px; */
-  /* position: fixed; */
+.event-card {
+  /* border-style: solid;
+  border-color: blue; */
 }
+
+.event-text-content {
+  padding-left: 15px;
+}
+
+
 
 /* .all-events {
   grid-area: 2 / 2 / 6 / 6; 
@@ -138,16 +212,75 @@ code {
 
 .nav-button {
   margin: auto; 
-  padding: 10px 30px;
+  padding: 30px 16px;
   display: block;
+  transition: all 0.3s ease;
+  font-size: 20px;
+  color: #d0a0ec;
 }
 
-.navbar {
-  margin-top: 70px;
-  justify-content: center;
-  position: center;
-  /* background-color: pink; */
+.nav-button:hover {
+  background-color: grey;
 }
+
+
+.navbar {
+  margin: 0px;
+  justify-content: center;
+  position: fixed;
+  background-color: #0d335d;
+  flex-grow: 1; 
+  overflow-y: auto;
+  height: 100%;
+  z-index: 100;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Searchbar  */
+
+.search {
+  margin-bottom: 20px;
+  top: 0;
+  width: 100%;
+  position: relative;
+  display: flex;
+  /* float: center; */
+  /* position: center;  */
+}
+
+.searchTerm {
+  width: 200px;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 100px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
 
 /* 
 .home-card-event {

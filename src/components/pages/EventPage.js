@@ -1,5 +1,5 @@
 // Navbar, artist info, 3 videos 
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player"
 
@@ -7,7 +7,7 @@ import ReactPlayer from "react-player"
 function EventPage ( {currentUser}) {
 
     const [event, setEvent] = useState(null)
-
+    const history = useHistory()
     const params = useParams()
 
     useEffect(() => {
@@ -49,10 +49,14 @@ function EventPage ( {currentUser}) {
                 </div>
             )
         })
+    
+    function seeEvent() {
+
+    }
 
         return (
             <section> 
-                <div> 
+                <div className='main-event'> 
                     <div className='event-page-info'> 
                         <div className="event-page-image"> 
                             <img src={artist.picture} alt={artist.name}></img>
@@ -60,16 +64,15 @@ function EventPage ( {currentUser}) {
                         <div className='event-page-content'>
                             <h3>{name}</h3>
                             <p> {location} </p> 
-                             <button onClick={buyTicket}> Buy a ticket </button>
+                            <button onClick={buyTicket}> Buy a ticket </button>
                             <a href={event_url}> See this event on SongKick </a>
+                            {/* <button href={event_url}>See This Event on SongKick</button> */}
                         </div> 
                     </div>
                     <div className='event-page-info'>
-                        <div>
-                            <h3>About the artist</h3>
-                            <p>{artist.name}</p> 
-                        </div>
-                    </div>
+                        <h3>About The Artist</h3>
+                        <p>{artist.description}</p> 
+                    </div>                   
                     <div className='performances'>
                         <h3>Past Performances</h3>
                         {pastPerformances}
