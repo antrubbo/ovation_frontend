@@ -21,13 +21,10 @@ function Home ( {events, shuffle} ) {
     })
 
     return (
-        <section>
-            <div className="main-home">
-                {/* <h1 id="homeH1">I'm Home</h1>  */}
-                {fiveEvents} 
-            </div>        
-            
-        </section>
+        <div className="main-home" id="right">
+            {/* <h1 id="homeH1">I'm Home</h1>  */}
+            {fiveEvents} 
+        </div>
     )
 }
 

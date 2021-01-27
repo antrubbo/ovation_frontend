@@ -20,13 +20,10 @@ function Navbar ({onLogOut, currentUser, setCurrentUser}) {
             { !currentUser ? (<NavLink exact to="/signup" className="nav-button">
                 Sign Up {' '}
             </NavLink> ) :
-           (<NavLink exact to="/" className="nav-button" onClick={onLogOut}>
+            (<NavLink exact to="/" className="nav-button" onClick={onLogOut}>
                 Log Out {' '}
             </NavLink>)}
-            
-            {/* <button onClick={onLogOut}>Log out</button> */}
         </nav>
-         
     )
     }
     

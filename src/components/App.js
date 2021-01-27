@@ -54,30 +54,35 @@ function App() {
   }
 
   return (
-    <div class="app">
-      <Header />
+   
+    <div className="app">
+      <div id="left" className="column"> 
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} onLogOut={handleLogout}/>
-      <Switch>
-        <Route exact path="/user/:id">
-          <UserPage email={email} setEmail={setEmail} name={name} setName={setName} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-        </Route>
-        <Route exact path="/events/:id">
-          <EventPage  currentUser={currentUser}/>
-        </Route>
-        <Route exact path="/events">
-          <EventsList shuffle={shuffle} events={events} />
-        </Route>
-        <Route exact path="/login">
-          <LoginPage baseUrl={baseUrl} errors={errors} setErrors={setErrors} currentUser={currentUser} setCurrentUser={setCurrentUser} email={email} setEmail={setEmail}/>
-        </Route>
-        <Route exact path="/signup">
-          <SignupPage currentUser={currentUser} errors={errors} setErrors={setErrors} setCurrentUser={setCurrentUser} baseUrl={baseUrl} name={name} setName={setName} email={email} setEmail={setEmail}/>
-        </Route>
-        <Route exact path="/">
-          <Home shuffle={shuffle} events={events}/>
-        </Route>
-    </Switch>
-    </div>
+      </div>
+      <div id="right" className="column"> 
+                    <Header />
+          <Switch>
+            <Route exact path="/user/:id">
+              <UserPage email={email} setEmail={setEmail} name={name} setName={setName} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+            </Route>
+            <Route exact path="/events/:id">
+              <EventPage  currentUser={currentUser}/>
+            </Route>
+            <Route exact path="/events">
+              <EventsList shuffle={shuffle} events={events} />
+            </Route>
+            <Route exact path="/login">
+              <LoginPage baseUrl={baseUrl} errors={errors} setErrors={setErrors} currentUser={currentUser} setCurrentUser={setCurrentUser} email={email} setEmail={setEmail}/>
+            </Route>
+            <Route exact path="/signup">
+              <SignupPage currentUser={currentUser} errors={errors} setErrors={setErrors} setCurrentUser={setCurrentUser} baseUrl={baseUrl} name={name} setName={setName} email={email} setEmail={setEmail}/>
+            </Route>
+            <Route exact path="/">
+              <Home shuffle={shuffle} events={events}/>
+            </Route>
+          </Switch>
+      </div>
+    </div> 
   );
 }
 
