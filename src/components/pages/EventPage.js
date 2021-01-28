@@ -72,9 +72,9 @@ function EventPage ( {currentUser}) {
                     <div className='event-page-info'>
                         <h3>About The Artist</h3>
                         <p>{artist.description}</p> 
-                    </div>                   
+                    </div>                         
+                    <h3 class='past-h3'>Past Performances</h3>
                     <div className='performances'>
-                        <h3>Past Performances</h3>
                         {pastPerformances}
                     </div>
                 </div>

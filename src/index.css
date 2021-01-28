@@ -165,9 +165,16 @@ code {
   padding-left: 89px; 
 }
 
-
+.performances > * {
+  width: 500px;
+  height: 300px;
+}
 
 .performances {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(25vw, auto);
+  grid-gap: 1vw;
   padding-left: 40px;
 }
 
@@ -280,7 +287,9 @@ code {
   font-size: 20px;
 }
 
-
+.past-h3 {
+  padding-left: 40px;
+}
 
 /* 
 .home-card-event {
