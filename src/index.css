@@ -24,13 +24,15 @@ body {
 .header {
   flex-shrink: 0;
   display: inline-flex;
+  padding-left: 40px;
+  /* height: 17%; */
   /* justify-content: center; */
 }
 
 .header h1 {
   justify-self: left;
   margin-right: 35px;
-  padding-left: 86px;
+  /* padding-left: 86px; */
 }
 
 .header h3{
@@ -66,6 +68,17 @@ img {
   /* height: auto; */
 } 
 
+#logo {
+  width: 100%;
+  height: auto;
+  padding-left: 10px;
+}
+
+#logoH3 {
+  padding-top: 62px;
+}
+
+
 .event-image-div {
   /* border-style: solid;
   border-color: pink; */
@@ -83,8 +96,9 @@ img {
 }
 
 .event-page-image img {
-  padding-top: 30px;
-  width: 50%
+  /* height: 800px; */
+  width: 60%;
+  height: 30%;
 }
  /* opacity: 0.5; */
   /* height: auto; 
@@ -159,10 +173,10 @@ code {
 
 /* Authorization pages  */
 .login {
-  padding-left: 89px; 
+  padding-left: 86px; 
 }
 .signup {
-  padding-left: 89px; 
+  padding-left: 86px; 
 }
 
 .performances > * {
@@ -184,37 +198,18 @@ code {
   border-color: blue; */
   /* padding-left: 20px; */
   /* width: 20%; */
+  background-color: #d0a0ec;
 }
 
 .event-card {
   /* border-style: solid;
   border-color: blue; */
+  background-color: #d0a0ec;
 }
 
 .event-text-content {
   padding-left: 15px;
 }
-
-
-
-/* .all-events {
-  grid-area: 2 / 2 / 6 / 6; 
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  overflow: hidden;  
-  min-width: 0; 
-  margin-top: 20px;
-} */
-
-/* .event-card {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem 2rem;
-  min-width: 0;
-  position: relative;
-  border: 2px solid var(--dark-turquoise);
-} */
 
 
 .nav-button {
@@ -262,8 +257,9 @@ code {
 
 .searchTerm {
   width: 200px;
-  border: 3px solid #00B4CC;
-  border-right: none;
+  border: 3px solid  #d0a0ec;
+  display: block;
+  /* border-right: none; */
   padding: 5px;
   height: 20px;
   border-radius: 5px 0 0 5px;
@@ -278,8 +274,8 @@ code {
 .searchButton {
   width: 100px;
   height: 36px;
-  border: 1px solid #00B4CC;
-  background: #00B4CC;
+  border: 1px solid  #d0a0ec;
+  background: #d0a0ec;
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0px;

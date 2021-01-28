@@ -1,11 +1,15 @@
-import ovationLogo from "./logo.jpeg"
+import ovationLogo from "../logo.jpeg"
 
 function Header () {
 
     return (
         <div className="header">
-            <img src={ovationLogo} alt="Ovation Logo"></img>
-            <h3>Get Out - Go to Shows - Give an Ovation</h3>
+            <div id="logo-div">
+                <img src={ovationLogo} alt="Ovation Logo" id="logo"></img>
+            </div>
+            <div>
+                <h3 id="logoH3">Get Out - Go to Shows - Give an Ovation</h3>
+            </div>
         </div>
     )
     }
