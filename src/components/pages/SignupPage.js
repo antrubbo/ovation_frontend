@@ -48,7 +48,8 @@ function SignupPage({errors, setErrors, currentUser, setCurrentUser, baseUrl, na
                 <input className="searchTerm" type="text" placeholder="Name.." value={name} onChange={evt => setName(evt.target.value)}></input>
                 <input className="searchTerm" type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
                 <input className="searchTerm" type="text" placeholder="Picture Url.." value={picture} onChange={evt => setPicture(evt.target.value)}></input>
-                <input className="searchButton" type="submit"></input>
+                <input className="searchTerm" type="password" placeholder="Password..." ></input>
+                <input className="formButton" type="submit"></input>
             </form>
         </div>
     )

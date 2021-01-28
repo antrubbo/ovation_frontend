@@ -31,7 +31,7 @@ function EventPage ( {currentUser}) {
                 body: JSON.stringify(formBody)
             })
                 .then(r => r.json())
-                .then(newTicket => alert(`${newTicket.event.name}`))
+                .then(newTicket => alert(`Congrats! You just got a ticket to ${newTicket.event.name}`))
         } else {
             alert("You must sign up or login to buy a ticket")
         }
@@ -42,7 +42,7 @@ function EventPage ( {currentUser}) {
         
         const pastPerformances = artist.past_performances.map((performance) => {
             return ( 
-                <div key={performance}>
+                <div key={performance} class='one-performance'>
                     <ReactPlayer
                         url={performance}
                     />
@@ -62,14 +62,14 @@ function EventPage ( {currentUser}) {
                             <img src={artist.picture} alt={artist.name}></img>
                         </div>
                         <div className='event-page-content'>
-                            <h3>{name}</h3>
+                            <h1>{name}</h1>
                             <p> {location} </p> 
-                            <button onClick={buyTicket}> Buy a ticket </button>
+                            <button class='formButton' onClick={buyTicket}> Buy a ticket </button>
                             <a href={event_url}> See this event on SongKick </a>
                             {/* <button href={event_url}>See This Event on SongKick</button> */}
                         </div> 
                     </div>
-                    <div className='event-page-info'>
+                    <div className='event-page-artist-info'>
                         <h3>About The Artist</h3>
                         <p>{artist.description}</p> 
                     </div>                         

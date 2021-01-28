@@ -24,9 +24,12 @@ function Home ( {events, shuffle} ) {
     })
 
     return (
+        <>
+        <h1 class='featured'>Featured events</h1>
         <div className="main-home" id="right">
             {fiveEvents} 
         </div>
+        </>
     )
 }
 

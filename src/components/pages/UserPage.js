@@ -35,7 +35,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
                         <h3>{ticket.event.name}</h3>
                         <p>Who: {ticket.event.artist.name}</p>
                         <p>Where: {ticket.event.location}</p>
-                        <button id={ticket.id} onClick={sellTicket}>Sell Ticket</button>
+                        <button class='formButton' id={ticket.id} onClick={sellTicket}>Sell Ticket</button>
                     </div>
                 </li> 
                 )
@@ -91,13 +91,13 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
                     {allTickets}
                 </ul>
             </div>
-            {clicked ? null : <button onClick={handleEdit}>Edit Account</button> }
+            {clicked ? null : <button class='formButton' onClick={handleEdit}>Edit Account</button> }
             {clicked ? <form onSubmit={handleSubmit}>  
                     <input type="text" placeholder="Name.." value={name} onChange={evt => setName(evt.target.value)}></input>
                     <input type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
                     <input type="submit" value="Finalize Changes"></input>
             </form> : null}
-            <button onClick={handleDelete}>Delete Account</button>
+            <button class='formButton' onClick={handleDelete}>Delete Account</button>
         </div>
     )
 }

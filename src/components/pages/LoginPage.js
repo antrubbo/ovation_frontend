@@ -40,8 +40,8 @@ function LoginPage ({currentUser, setCurrentUser, email, setEmail, errors, setEr
                 {errors ? <p key={errors} style={{ color: 'red' }}>*{errors}</p> : null}
                 <form onSubmit={onLoginSubmit}>
                     <input class="searchTerm" type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
-                    <input class="searchTerm" type="text" placeholder="Password.." value={fakePassword} onChange={evt => setFakePassword(evt.target.value)}></input>
-                    <input type="submit" value="Log In"></input>
+                    <input class="searchTerm" type="password" placeholder="Password.." value={fakePassword} onChange={evt => setFakePassword(evt.target.value)}></input>
+                    <input className='formButton' type="submit" value="Log In"></input>
                 </form>
             </div>
         </div>

@@ -12,7 +12,7 @@ function EventItem ( {event}) {
     
     return (
         <div className="event-card">
-            <div className="event-image-div"> 
+            <div className="all-event-image-div"> 
                 <img src={event.artist.picture} alt={event.artist.name} onMouseOver={changeOpacity} onClick={() => history.push(`/events/${event.id}`)}></img>
             </div>
             <div className="event-text-content">
