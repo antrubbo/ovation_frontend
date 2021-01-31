@@ -1,3 +1,6 @@
+/* Color Palette 
+https://colorhunt.co/palette/253250 */
+
 html {
   height: 100%;
 }
@@ -339,6 +342,36 @@ text-align: center
 .past-h3 {
   padding-left: 40px;
 }
+
+/* Table Formatting */
+
+table, th, td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {  
+  text-align: left;
+}
+
+td {
+  padding: 5px;
+}
+
+caption {
+  font-size: 24px; 
+}
+
+.ticket-table {
+  border-spacing: 15px;
+  width: 100%;
+}
+
+/* 
+.ticket-table td {
+  border-bottom: 5px solid black;
+} */
+
 
 /* 
 .home-card-event {
