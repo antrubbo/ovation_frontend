@@ -4,31 +4,38 @@ import {useHistory} from "react-router-dom"
 
 function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser}) {
     const [clicked, setClicked] = useState(false)
+    const [tickets, setTickets] = useState([])
     const history = useHistory()
     
     
     useEffect(() => {
         fetch(`http://localhost:3000/users/${currentUser.id}`)
             .then(r => r.json())
-            .then(newUser => setCurrentUser(newUser))
+            .then(newUser => {
+                setCurrentUser(newUser)
+                setTickets(newUser.tickets)
+            })
     }, [setCurrentUser, currentUser.id])
 
     function sellTicket (e) {
-        let ticketId = e.target.id
+        let deletedTicketId = e.target.id
 
-        fetch(`http://localhost:3000/tickets/${ticketId}`, {
+        fetch(`http://localhost:3000/tickets/${deletedTicketId}`, {
             method: "DELETE"
         })
             .then(r=> r.json())
             .then(data => console.log(data))
             .then(() => {
-                const parentDiv = e.target.parentElement
-                parentDiv.parentElement.remove()
+                const remainingTickets = tickets.filter(ticket => {
+                    return ticket.id !== parseInt(deletedTicketId)
+                })
+                setTickets(remainingTickets)
             })
     }
 
 
-    const allTickets = currentUser.tickets.map(ticket => {
+
+    const allTickets = tickets.map(ticket => {
         return ( 
                 <li key={ticket.id}>
                     <div>
