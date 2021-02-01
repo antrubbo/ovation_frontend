@@ -325,7 +325,7 @@ text-align: center
 }
 
 .formButton {
-  width: 150px;
+  width: 155px;
   height: 36px;
   border: 1px solid  #d0a0ec;
   background: #d0a0ec;
@@ -337,6 +337,7 @@ text-align: center
   margin-top: 5px;
   margin-bottom: 5px;
   display: block;
+  overflow-wrap: break-word;
 }
 
 .past-h3 {

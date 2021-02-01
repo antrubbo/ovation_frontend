@@ -105,9 +105,9 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
             </table>
             {clicked ? null : <button class='formButton' onClick={handleEdit}>Edit Account</button> }
             {clicked ? <form onSubmit={handleSubmit}>  
-                    <input type="text" placeholder="Name.." value={name} onChange={evt => setName(evt.target.value)}></input>
-                    <input type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
-                    <input type="submit" value="Finalize Changes"></input>
+                    <input className="searchTerm" type="text" placeholder="Name.." value={name} onChange={evt => setName(evt.target.value)}></input>
+                    <input className="searchTerm" type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
+                    <input className="formButton" type="submit" value="Confirm Change"></input>
             </form> : null}
             <button class='formButton' onClick={handleDelete}>Delete Account</button>
         </div>
