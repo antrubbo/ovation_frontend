@@ -19,7 +19,7 @@ function SignupPage({errors, setErrors, currentUser, setCurrentUser, baseUrl, na
 
     function onFormSubmit(evt) {
         evt.preventDefault()
-        fetch(`${baseUrl}/users`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"

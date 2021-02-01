@@ -9,7 +9,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
     
     
     useEffect(() => {
-        fetch(`http://localhost:3000/users/${currentUser.id}`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${currentUser.id}`)
             .then(r => r.json())
             .then(newUser => {
                 setCurrentUser(newUser)
@@ -20,7 +20,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
     function sellTicket (e) {
         let deletedTicketId = e.target.id
 
-        fetch(`http://localhost:3000/tickets/${deletedTicketId}`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/tickets/${deletedTicketId}`, {
             method: "DELETE"
         })
             .then(r=> r.json())
@@ -62,7 +62,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
             email: email,
         }
 
-        fetch(`http://localhost:3000/users/${currentUser.id}`, 
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${currentUser.id}`, 
             {
                 method: 'PATCH',
                 headers: {'Content-Type': 'application/json'},
@@ -75,7 +75,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
        
     function handleDelete(evt) {
         alert("Delete Account - Are you sure?")
-        fetch(`http://localhost:3000/users/${currentUser.id}`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${currentUser.id}`, {
             method: "DELETE"
         })
         .then(r=> r.json())
@@ -93,6 +93,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
             {/* <h3>Tickets</h3> */}
             <table className="ticket-table">
                 <caption>Tickets</caption>
+                <tbody>
                 <tr> 
                     <th>Event</th>
                     <th>Artist</th>
@@ -100,6 +101,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
                     <th>Sell Ticket</th>
                 </tr>
                 {allTickets}
+                </tbody>
             </table>
             {clicked ? null : <button class='formButton' onClick={handleEdit}>Edit Account</button> }
             {clicked ? <form onSubmit={handleSubmit}>  

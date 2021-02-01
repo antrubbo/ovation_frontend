@@ -11,10 +11,12 @@ function EventPage ( {currentUser}) {
     const params = useParams()
 
     useEffect(() => {
-        fetch(`http://localhost:3000/events/${params.id}`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/events/${params.id}`)
             .then(r => r.json())
             .then(newEvent => setEvent(newEvent))
     }, [params.id])
+
+    
 
     function buyTicket(e) {
 
@@ -25,7 +27,7 @@ function EventPage ( {currentUser}) {
                 event_id: event.id
             }
 
-            fetch("http://localhost:3000/tickets", {
+            fetch(`${process.env.REACT_APP_API_BASE_URL}/tickets`, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(formBody)
