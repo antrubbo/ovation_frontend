@@ -8,10 +8,6 @@ import UserPage from "./pages/UserPage"
 import Navbar from "./Navbar"
 import Header from "./Header"
 import { Redirect, Route, Switch } from "react-router-dom";
-// import events from "../data/events"
-// import artists from "../data/artists"
-// import tickets from "../data/tickets"
-// import users from "../data/users"
 
 function App() {
   const baseUrl = "http://localhost:3000"
@@ -52,19 +48,6 @@ function App() {
   
     return array;
   }
-
-  // window.onscroll = function() {(stickyNav())};
-
-  // var navbar = document.getElementsByClassName('navbar')
-  // var sticky = navbar.offsetTop;
-
-  // function stickyNav() {
-  //   if (window.pageYOffset >= sticky) {
-  //     navbar.classList.add("sticky")
-  //   } else {
-  //     navbar.classList.remove("sticky");
-  //   }
-  // }
 
   return (
    

@@ -49,10 +49,6 @@ function EventPage ( {currentUser}) {
                 </div>
             )
         })
-    
-    function seeEvent() {
-
-    }
 
         return (
             <section> 
