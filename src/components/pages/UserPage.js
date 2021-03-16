@@ -19,34 +19,32 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
         fetch(`http://localhost:3000/tickets/${ticketId}`, {
             method: "DELETE"
         })
-            .then(r=> r.json())
-            .then(data => console.log(data))
-            .then(() => {
-                const parentDiv = e.target.parentElement
-                parentDiv.parentElement.remove()
-            })
+        .then(r=> r.json())
+        .then(data => console.log(data))
+        .then(() => {
+            const parentDiv = e.target.parentElement
+            parentDiv.parentElement.remove()
+        })
     }
 
 
     const allTickets = currentUser.tickets.map(ticket => {
         return ( 
-                <li key={ticket.id}>
-                    <div>
-                        <h3>{ticket.event.name}</h3>
-                        <p>Who: {ticket.event.artist.name}</p>
-                        <p>Where: {ticket.event.location}</p>
-                        <button class='formButton' id={ticket.id} onClick={sellTicket}>Sell Ticket</button>
-                    </div>
-                </li> 
-                )
+            <li key={ticket.id}>
+                <div>
+                    <h3>{ticket.event.name}</h3>
+                    <p>Who: {ticket.event.artist.name}</p>
+                    <p>Where: {ticket.event.location}</p>
+                    <button class='formButton' id={ticket.id} onClick={sellTicket}>Sell Ticket</button>
+                </div>
+            </li> 
+        )
     })
 
     const handleEdit = (e) => {
-
         setClicked(!clicked)
         setEmail(currentUser.email)
         setName(currentUser.name)
-
     }
 
     const handleSubmit = (e) => {
@@ -63,9 +61,9 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(formBody)
             })
-                .then(r=> r.json())
-                .then(updatedUser => setCurrentUser(updatedUser))
-                .then(setClicked(!clicked))
+            .then(r=> r.json())
+            .then(updatedUser => setCurrentUser(updatedUser))
+            .then(setClicked(!clicked))
     }
        
     function handleDelete(evt) {
