@@ -16,6 +16,7 @@ Events
 <!-- 2. Search for events  -->
 
 Stretch 
+
 Artists
 1. See an artist's info
 2. See upcoming events 
@@ -23,7 +24,4 @@ Artists
 Stretch
 1. Make embedded videos pop out 
 
-1. Change font 
-2. Pick color scheme
-3. Add logos for nav buttons
-4. Make navbar look better
+-- Write Read Me

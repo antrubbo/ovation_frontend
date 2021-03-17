@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {useHistory} from "react-router-dom"
 
-function Home ( {events, shuffle} ) {
+function Home ({events, shuffle}){
     const history = useHistory()
-
     shuffle(events)
 
     const fiveEvents = events.slice(0, 5).map((event) => {
-
         return (
             <div key={event.id} className='home-event-card'>
                     <div className="event-image-div">
@@ -25,7 +23,7 @@ function Home ( {events, shuffle} ) {
 
     return (
         <>
-        <h1 class='featured'>Featured events</h1>
+        <h1 className='featured'>Featured events</h1>
         <div className="main-home" id="right">
             {fiveEvents} 
         </div>

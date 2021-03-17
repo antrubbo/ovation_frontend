@@ -2,20 +2,25 @@ import {useEffect, useState} from "react"
 import {useHistory} from "react-router-dom"
 
 
-function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser}) {
+function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, baseUrl, handleLogout}) {
     const [clicked, setClicked] = useState(false)
     const [tickets, setTickets] = useState([])
     const history = useHistory()
-    
-    
+
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${currentUser.id}`)
-            .then(r => r.json())
-            .then(newUser => {
-                setCurrentUser(newUser)
-                setTickets(newUser.tickets)
-            })
-    }, [setCurrentUser, currentUser.id])
+        const token = localStorage.getItem("token")
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/profile`, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+        })
+        .then(r => r.json())
+        .then(userObj => {
+        setCurrentUser(userObj)
+        setTickets(userObj.tickets)
+        })
+    }, [baseUrl, setCurrentUser])
 
     function sellTicket (e) {
         let deletedTicketId = e.target.id
@@ -33,25 +38,10 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
             })
     }
 
-
-
-        const allTickets = tickets.map(ticket => {
-            return (
-                <tr>
-                    <td>{ticket.event.name}</td>
-                    <td>{ticket.event.artist.name}</td>
-                    <td>{ticket.event.location}</td>
-                    <td> <button class='formButton' id={ticket.id} onClick={sellTicket}>Sell Ticket</button></td>
-                </tr>
-            )
-        })
-
     const handleEdit = (e) => {
-
         setClicked(!clicked)
         setEmail(currentUser.email)
         setName(currentUser.name)
-
     }
 
     const handleSubmit = (e) => {
@@ -80,12 +70,24 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
         })
         .then(r=> r.json())
         .then(deletedUserObj => {
-            setCurrentUser("")
+            handleLogout()
+            alert("Account Deleted!")
+            history.push('/')
         })
-        alert("Account Deleted!")
-        history.push("/")
     }
+
+    const allTickets = tickets.map(ticket => {
+        return (
+            <tr>
+                <td>{ticket.event.name}</td>
+                <td>{ticket.event.artist.name}</td>
+                <td>{ticket.event.location}</td>
+                <td> <button class='formButton' id={ticket.id} onClick={sellTicket}>Sell Ticket</button></td>
+            </tr>
+        )
+    })
     
+    if(currentUser){
 
     return(
         <div className="user-show">
@@ -112,6 +114,9 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
             <button class='formButton' onClick={handleDelete}>Delete Account</button>
         </div>
     )
+    } else {
+        return <h1>Loading...</h1>
+    }
 }
 
 export default UserPage
