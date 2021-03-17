@@ -1,35 +1,34 @@
-import {useState} from "react"
 import { useHistory } from "react-router-dom"
+// import { useEffect } from "react"
 
-function LoginPage ({currentUser, setCurrentUser, email, setEmail, errors, setErrors, baseUrl}) {
-    const [fakePassword, setFakePassword] = useState("")
+function LoginPage ({currentUser, setCurrentUser, email, setEmail, errors, setErrors, password, setPassword, baseUrl}) {
     const history = useHistory()
 
-    function onLoginSubmit(evt) {
+    function onLoginSubmit(evt){
         evt.preventDefault()
-        fetch("http://localhost:3000/login", {
+        const formData = {
+            email: email, 
+            password: password
+        }
+        fetch(`${baseUrl}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                email: email
-            })
+            body: JSON.stringify(formData)
             })
             .then((r) => r.json())
             .then(user => {
                 console.log(user)
-                console.log(email)
                 if (user.errors) {
                     setErrors(user.errors)
                 } else {
-                    setCurrentUser(user)
+                    setCurrentUser(user.user)
                     setErrors("")
-                    history.push(`/user/${user.id}`)
+                    localStorage.setItem("token", user.token)
+                    history.push(`/user/${user.user.id}`)
                 }
             });
-        setEmail("")
-        setFakePassword("")
     }
 
     return (
@@ -39,8 +38,8 @@ function LoginPage ({currentUser, setCurrentUser, email, setEmail, errors, setEr
                 {currentUser ? <h1>Welcome, {currentUser.name}</h1> : null}
                 {errors ? <p key={errors} style={{ color: 'red' }}>*{errors}</p> : null}
                 <form onSubmit={onLoginSubmit}>
-                    <input class="searchTerm" type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
-                    <input class="searchTerm" type="password" placeholder="Password.." value={fakePassword} onChange={evt => setFakePassword(evt.target.value)}></input>
+                    <input class="searchTerm" type="text" placeholder="Email Address..." value={email} onChange={evt => setEmail(evt.target.value)}></input>
+                    <input class="searchTerm" type="password" placeholder="Password..." value={password} onChange={evt => setPassword(evt.target.value)}></input>
                     <input className='formButton' type="submit" value="Log In"></input>
                 </form>
             </div>

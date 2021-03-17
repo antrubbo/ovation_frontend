@@ -2,16 +2,30 @@ import {useEffect, useState} from "react"
 import {useHistory} from "react-router-dom"
 
 
-function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser}) {
+function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, baseUrl}) {
     const [clicked, setClicked] = useState(false)
     const history = useHistory()
-    
-    
+    console.log(currentUser)
+
     useEffect(() => {
-        fetch(`http://localhost:3000/users/${currentUser.id}`)
-            .then(r => r.json())
-            .then(newUser => setCurrentUser(newUser))
-    }, [setCurrentUser, currentUser.id])
+        // fetch(`http://localhost:3000/users/${currentUser.id}`)
+        //     .then(r => r.json())
+        //     .then(newUser => setCurrentUser(newUser))
+        
+        const token = localStorage.getItem("token")
+        if(currentUser){
+        fetch(`${baseUrl}/profile`, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+        })
+        .then(r => r.json())
+        .then(userObj => {
+        setCurrentUser(userObj)
+        })
+    }
+    }, [])
 
     function sellTicket (e) {
         let ticketId = e.target.id
@@ -27,8 +41,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
         })
     }
 
-
-    const allTickets = currentUser.tickets.map(ticket => {
+   const allTickets = currentUser.tickets.map(ticket => {
         return ( 
             <li key={ticket.id}>
                 <div>
@@ -79,7 +92,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
         history.push("/")
     }
     
-
+    if(currentUser){
     return(
         <div className="user-show">
             <h1>{currentUser.name}</h1>
@@ -98,6 +111,9 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
             <button class='formButton' onClick={handleDelete}>Delete Account</button>
         </div>
     )
+    } else {
+        return <h1>Loading...</h1>
+    }
 }
 
 export default UserPage
