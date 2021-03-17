@@ -1,13 +1,13 @@
 import {useState} from "react"
 import { useHistory } from "react-router-dom"
 
-function LoginPage ({currentUser, setCurrentUser, email, setEmail, errors, setErrors, baseUrl}) {
+function LoginPage ({currentUser, setCurrentUser, email, setEmail, errors, setErrors}) {
     const [fakePassword, setFakePassword] = useState("")
     const history = useHistory()
 
     function onLoginSubmit(evt) {
         evt.preventDefault()
-        fetch("http://localhost:3000/login", {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

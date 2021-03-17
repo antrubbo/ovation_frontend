@@ -10,7 +10,6 @@ import Header from "./Header"
 import { Redirect, Route, Switch } from "react-router-dom";
 
 function App() {
-  const baseUrl = "http://localhost:3000"
   
   const [currentUser, setCurrentUser] = useState(null)
   const [events, setEvents] = useState([])
@@ -20,10 +19,11 @@ function App() {
   
 
   useEffect(() => {
-    fetch(`${baseUrl}/events`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/events`)
       .then(r => r.json())
       .then(events => setEvents(events))
   },[])
+
 
   function handleLogout() {
     setCurrentUser(null);
@@ -68,10 +68,10 @@ function App() {
               <EventsList shuffle={shuffle} events={events} />
             </Route>
             <Route exact path="/login">
-              <LoginPage baseUrl={baseUrl} errors={errors} setErrors={setErrors} currentUser={currentUser} setCurrentUser={setCurrentUser} email={email} setEmail={setEmail}/>
+              <LoginPage errors={errors} setErrors={setErrors} currentUser={currentUser} setCurrentUser={setCurrentUser} email={email} setEmail={setEmail}/>
             </Route>
             <Route exact path="/signup">
-              <SignupPage currentUser={currentUser} errors={errors} setErrors={setErrors} setCurrentUser={setCurrentUser} baseUrl={baseUrl} name={name} setName={setName} email={email} setEmail={setEmail}/>
+              <SignupPage currentUser={currentUser} errors={errors} setErrors={setErrors} setCurrentUser={setCurrentUser} name={name} setName={setName} email={email} setEmail={setEmail}/>
             </Route>
             <Route exact path="/">
               <Home shuffle={shuffle} events={events}/>

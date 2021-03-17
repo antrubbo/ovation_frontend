@@ -4,42 +4,47 @@ import {useHistory} from "react-router-dom"
 
 function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser}) {
     const [clicked, setClicked] = useState(false)
+    const [tickets, setTickets] = useState([])
     const history = useHistory()
     
     
     useEffect(() => {
-        fetch(`http://localhost:3000/users/${currentUser.id}`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${currentUser.id}`)
             .then(r => r.json())
-            .then(newUser => setCurrentUser(newUser))
+            .then(newUser => {
+                setCurrentUser(newUser)
+                setTickets(newUser.tickets)
+            })
     }, [setCurrentUser, currentUser.id])
 
     function sellTicket (e) {
-        let ticketId = e.target.id
+        let deletedTicketId = e.target.id
 
-        fetch(`http://localhost:3000/tickets/${ticketId}`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/tickets/${deletedTicketId}`, {
             method: "DELETE"
         })
             .then(r=> r.json())
             .then(data => console.log(data))
             .then(() => {
-                const parentDiv = e.target.parentElement
-                parentDiv.parentElement.remove()
+                const remainingTickets = tickets.filter(ticket => {
+                    return ticket.id !== parseInt(deletedTicketId)
+                })
+                setTickets(remainingTickets)
             })
     }
 
 
-    const allTickets = currentUser.tickets.map(ticket => {
-        return ( 
-                <li key={ticket.id}>
-                    <div>
-                        <h3>{ticket.event.name}</h3>
-                        <p>Who: {ticket.event.artist.name}</p>
-                        <p>Where: {ticket.event.location}</p>
-                        <button class='formButton' id={ticket.id} onClick={sellTicket}>Sell Ticket</button>
-                    </div>
-                </li> 
-                )
-    })
+
+        const allTickets = tickets.map(ticket => {
+            return (
+                <tr>
+                    <td>{ticket.event.name}</td>
+                    <td>{ticket.event.artist.name}</td>
+                    <td>{ticket.event.location}</td>
+                    <td> <button class='formButton' id={ticket.id} onClick={sellTicket}>Sell Ticket</button></td>
+                </tr>
+            )
+        })
 
     const handleEdit = (e) => {
 
@@ -57,7 +62,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
             email: email,
         }
 
-        fetch(`http://localhost:3000/users/${currentUser.id}`, 
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${currentUser.id}`, 
             {
                 method: 'PATCH',
                 headers: {'Content-Type': 'application/json'},
@@ -70,7 +75,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
        
     function handleDelete(evt) {
         alert("Delete Account - Are you sure?")
-        fetch(`http://localhost:3000/users/${currentUser.id}`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${currentUser.id}`, {
             method: "DELETE"
         })
         .then(r=> r.json())
@@ -85,17 +90,24 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser})
     return(
         <div className="user-show">
             <h1>{currentUser.name}</h1>
-            <div className="tickets-div">
-                <h3>Tickets:</h3>
-                <ul>
-                    {allTickets}
-                </ul>
-            </div>
+            {/* <h3>Tickets</h3> */}
+            <table className="ticket-table">
+                <caption>Tickets</caption>
+                <tbody>
+                <tr> 
+                    <th>Event</th>
+                    <th>Artist</th>
+                    <th>Location</th>
+                    <th>Sell Ticket</th>
+                </tr>
+                {allTickets}
+                </tbody>
+            </table>
             {clicked ? null : <button class='formButton' onClick={handleEdit}>Edit Account</button> }
             {clicked ? <form onSubmit={handleSubmit}>  
-                    <input type="text" placeholder="Name.." value={name} onChange={evt => setName(evt.target.value)}></input>
-                    <input type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
-                    <input type="submit" value="Finalize Changes"></input>
+                    <input className="searchTerm" type="text" placeholder="Name.." value={name} onChange={evt => setName(evt.target.value)}></input>
+                    <input className="searchTerm" type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
+                    <input className="formButton" type="submit" value="Confirm Change"></input>
             </form> : null}
             <button class='formButton' onClick={handleDelete}>Delete Account</button>
         </div>
