@@ -20,13 +20,13 @@ function LoginPage ({currentUser, setCurrentUser, email, setEmail, errors, setEr
             .then((r) => r.json())
             .then(user => {
                 console.log(user)
-                if (user.errors) {
-                    setErrors(user.errors)
+                if (user.error) {
+                    setErrors(user.error)
                 } else {
                     setCurrentUser(user.user)
                     setErrors("")
                     localStorage.setItem("token", user.token)
-                    history.push(`/user/${user.user.id}`)
+                    history.push(`/events`)
                 }
             });
     }

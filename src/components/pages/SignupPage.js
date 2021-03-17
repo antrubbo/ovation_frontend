@@ -4,14 +4,6 @@ import { useHistory } from "react-router-dom"
 function SignupPage({errors, setErrors, currentUser, setCurrentUser, baseUrl, name, email, setName, setEmail, password, setPassword}) {
     const [picture, setPicture] = useState("")
     const history = useHistory()
-    console.log(password)
-    
-    // const formData = {
-    //   name,
-    //   email,
-    //   picture: picture ? picture : "https://www.thebalancecareers.com/thmb/p8dJbwwp5yyEzYA5SvuarUkZzRU=/1500x844/smart/filters:no_upscale()/GettyImages-639920934-5a0ce0d40d327a003650bbf4-5c09914f46e0fb00017183bb.jpg",
-    //   password
-    // }
 
     function setUserStateToQuotes() {
         setName("")
@@ -39,14 +31,14 @@ function SignupPage({errors, setErrors, currentUser, setCurrentUser, baseUrl, na
         .then(resp => resp.json())
         .then(user => {
           console.log(user)
-          if(user.errors) {
-            setErrors(user.errors)
+          if(user.error) {
+            setErrors(user.error)
             setUserStateToQuotes()
           } else {
             setCurrentUser(user.user)
             setErrors("")
             localStorage.setItem("token", user.token)
-            history.push(`/user/${user.id}`)
+            history.push(`/events`)
           }
         })
         setUserStateToQuotes()

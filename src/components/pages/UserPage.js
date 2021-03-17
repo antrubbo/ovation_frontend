@@ -5,15 +5,9 @@ import {useHistory} from "react-router-dom"
 function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, baseUrl}) {
     const [clicked, setClicked] = useState(false)
     const history = useHistory()
-    console.log(currentUser)
 
     useEffect(() => {
-        // fetch(`http://localhost:3000/users/${currentUser.id}`)
-        //     .then(r => r.json())
-        //     .then(newUser => setCurrentUser(newUser))
-        
         const token = localStorage.getItem("token")
-        if(currentUser){
         fetch(`${baseUrl}/profile`, {
         method: "GET",
         headers: {
@@ -24,8 +18,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, 
         .then(userObj => {
         setCurrentUser(userObj)
         })
-    }
-    }, [])
+    }, [baseUrl, setCurrentUser])
 
     function sellTicket (e) {
         let ticketId = e.target.id
@@ -41,19 +34,6 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, 
         })
     }
 
-   const allTickets = currentUser.tickets.map(ticket => {
-        return ( 
-            <li key={ticket.id}>
-                <div>
-                    <h3>{ticket.event.name}</h3>
-                    <p>Who: {ticket.event.artist.name}</p>
-                    <p>Where: {ticket.event.location}</p>
-                    <button class='formButton' id={ticket.id} onClick={sellTicket}>Sell Ticket</button>
-                </div>
-            </li> 
-        )
-    })
-
     const handleEdit = (e) => {
         setClicked(!clicked)
         setEmail(currentUser.email)
@@ -68,15 +48,14 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, 
             email: email,
         }
 
-        fetch(`http://localhost:3000/users/${currentUser.id}`, 
-            {
-                method: 'PATCH',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(formBody)
-            })
-            .then(r=> r.json())
-            .then(updatedUser => setCurrentUser(updatedUser))
-            .then(setClicked(!clicked))
+        fetch(`http://localhost:3000/users/${currentUser.id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formBody)
+        })
+        .then(r=> r.json())
+        .then(updatedUser => setCurrentUser(updatedUser))
+        .then(setClicked(!clicked))
     }
        
     function handleDelete(evt) {
@@ -93,6 +72,19 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, 
     }
     
     if(currentUser){
+    const allTickets = currentUser.tickets.map(ticket => {
+        return ( 
+            <li key={ticket.id}>
+                <div>
+                    <h3>{ticket.event.name}</h3>
+                    <p>Who: {ticket.event.artist.name}</p>
+                    <p>Where: {ticket.event.location}</p>
+                    <button class='formButton' id={ticket.id} onClick={sellTicket}>Sell Ticket</button>
+                </div>
+            </li> 
+        )
+    })
+
     return(
         <div className="user-show">
             <h1>{currentUser.name}</h1>
