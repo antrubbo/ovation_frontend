@@ -24,4 +24,7 @@ Artists
 Stretch
 1. Make embedded videos pop out 
 
--- Write Read Me
+-- Write Read Me's
+-- Make data from API dynamic
+    -- Make featured events change on refresh
+--Clean up event cards
