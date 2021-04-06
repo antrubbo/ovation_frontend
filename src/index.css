@@ -1,10 +1,145 @@
+/* Color Palette 
+https://colorhunt.co/palette/253250 */
+
+html {
+  height: 100%;
+}
+/* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fff3e6;
+} 
+
+.app {
+    height: 100%;   
+    overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
+    margin: 0px;  /*removes default style*/
+    display: flex;  /*enables flex content for its children*/
+    box-sizing: border-box;
+    align-items: stretch;
+}
+
+.header {
+  flex-shrink: 0;
+  display: inline-flex;
+  padding-left: 40px;
+  /* height: 17%; */
+  /* justify-content: center; */
+}
+
+.header h1 {
+  justify-self: left;
+  margin-right: 35px;
+  /* padding-left: 86px; */
+}
+
+.header h3{
+  margin-top: 32px;
+}
+
+/* Flexbox columns */
+.column {
+  display: flex;
+  flex-direction: column;
+  /* height: 100%; */
+}
+
+#right {
+  padding-left: 6%;
+  padding-right: 2.35%;
+}
+
+
+#left {
+  background-color: #0d335d
+  /* height: 100%; */
+  /* position: relative; */
+}
+
+/* Images and divs surrounding images  */
+img {
+  width: 100%;
+  object-fit: cover;
+  margin: auto;
+  justify-content: center;
+  height: 300px;
+  /* height: auto; */
+} 
+
+#logo {
+  width: 100%;
+  height: auto;
+  padding-left: 10px;
+}
+
+#logoH3 {
+  padding-top: 62px;
+}
+
+
+.event-image-div {
+  /* border-style: solid;
+  border-color: pink; */
+  overflow: hidden; 
+  
+}
+
+.event-image-div:hover{
+  opacity: 0.5
+}
+
+.all-event-image-div:hover {
+  opacity: 0.5
+}
+
+.all-event-image-div {
+  overflow: hidden; 
+}
+
+.all-event-image-div img {
+  /* width: 550px;
+  height: 300px; */
+  width: 100%;
+  height: auto;
+}
+
+
+/* Div surrounding image on the one event page */
+.event-page-image {
+  overflow: hidden;
+  padding-top: 30px;
+}
+
+.event-page-image img {
+  /* height: 800px; */
+  width: 60%;
+  height: 30%;
+}
+ /* opacity: 0.5; */
+  /* height: auto; 
+  width: auto; 
+  max-width: 300px;  */
+  /* max-height: 300px; */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: rgb(120, 120, 120); */
+  /* position: fixed;
+  top: 0;
+  width: 100%; */
+}
+
+li {
+  float: left;
 }
 
 code {
@@ -12,11 +147,234 @@ code {
     monospace;
 }
 
-.navbar {
-  border-color: red;
-  border-style: solid;
+.featured {
+text-align: center
 }
 
-.nav-button {
-  margin-left: 5px; 
+/* #homeH1 { */
+  /* display: flex;
+  /* align-self: flex-start; */ 
+/* } */
+
+
+
+/* All Divs */
+.main-home {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: minmax(25vw, auto);
+  grid-gap: 1vw;
+  /* flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
+  /* overflow-y: auto; */
+  /* display: flex; */
+  /* flex-direction: row;  */
+  /* justify-content: space-between; */
 }
+
+.user-show {
+  padding-left: 40px;
+
+}
+
+#all-events-section {
+  margin-left: 40px;
+}
+
+.all-events {
+  /* flex-grow: 1;  
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(25vw, auto);
+  grid-gap: 1vw;
+
+}
+
+.event-page-info {
+  padding: 20px 40px;
+}
+
+.event-page-artist-info {
+  padding: 20px 40px;
+  width: 60%;
+}
+
+/* Authorization pages  */
+.login {
+  padding-left: 86px; 
+}
+.signup {
+  padding-left: 86px; 
+}
+
+.one-performance{
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+}
+
+.performances {
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(25vw, auto);
+  grid-gap: 1vw; */
+  margin-left: 40px;
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.one-performance a:hover {
+  background-color: #d0a0ec
+}
+
+/* Cards */
+.home-event-card {
+  /* border-style: solid;
+  border-color: blue; */
+  /* padding-left: 20px; */
+  /* width: 20%; */
+  background-color: #d0a0ec;
+}
+
+.event-card {
+  /* border-style: solid;
+  border-color: blue; */
+  background-color: #d0a0ec;
+}
+
+.event-text-content {
+  padding-left: 15px;
+}
+
+
+.nav-button {
+  margin: auto; 
+  padding: 30px 16px;
+  display: block;
+  transition: all 0.3s ease;
+  font-size: 20px;
+  color: #d0a0ec;
+}
+
+.nav-button:hover {
+  background-color: grey;
+}
+
+
+.navbar {
+  margin: 0px;
+  justify-content: center;
+  position: fixed;
+  background-color: #0d335d;
+  flex-grow: 1; 
+  overflow-y: auto;
+  height: 100%;
+  z-index: 100;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Searchbar  */
+
+.search {
+  margin-bottom: 20px;
+  top: 0;
+  width: 100%;
+  position: relative;
+  display: flex;
+  /* float: center; */
+  /* position: center;  */
+}
+
+.searchTerm {
+  width: 200px;
+  border: 3px solid  #d0a0ec;
+  display: block;
+  /* border-right: none; */
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 100px;
+  height: 36px;
+  border: 1px solid  #d0a0ec;
+  background: #d0a0ec;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.formButton {
+  width: 155px;
+  height: 36px;
+  border: 1px solid  #d0a0ec;
+  background: #d0a0ec;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: block;
+  overflow-wrap: break-word;
+}
+
+.past-h3 {
+  padding-left: 40px;
+}
+
+/* Table Formatting */
+
+table, th, td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {  
+  text-align: left;
+}
+
+td {
+  padding: 5px;
+}
+
+caption {
+  font-size: 24px; 
+}
+
+.ticket-table {
+  border-spacing: 15px;
+  width: 100%;
+}
+
+/* 
+.ticket-table td {
+  border-bottom: 5px solid black;
+} */
+
+
+/* 
+.home-card-event {
+  margin: 10px 10px;
+} */
