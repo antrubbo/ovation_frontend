@@ -91,7 +91,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, 
 
     return(
         <div className="user-show">
-            <h1>{currentUser.name}</h1>
+            <h1>Welcome Back {currentUser.name}!</h1>
             {/* <h3>Tickets</h3> */}
             <table className="ticket-table">
                 <caption>Tickets</caption>
@@ -110,6 +110,7 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, 
                     <input className="searchTerm" type="text" placeholder="Name.." value={name} onChange={evt => setName(evt.target.value)}></input>
                     <input className="searchTerm" type="text" placeholder="Email Address.." value={email} onChange={evt => setEmail(evt.target.value)}></input>
                     <input className="formButton" type="submit" value="Confirm Change"></input>
+                    <input className="formButton" type="submit" value="Cancel"></input>
             </form> : null}
             <button class='formButton' onClick={handleDelete}>Delete Account</button>
         </div>

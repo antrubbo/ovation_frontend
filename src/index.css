@@ -26,11 +26,11 @@ body {
 }
 
 .header {
-  flex-shrink: 0;
-  display: inline-flex;
+  /* flex-shrink: 0; */
+  display: flex;
   padding-left: 40px;
-  /* height: 17%; */
-  /* justify-content: center; */
+  /* height: 17%;
+  justify-content: center; */
 }
 
 .header h1 {
@@ -43,11 +43,11 @@ body {
   margin-top: 32px;
 }
 
-/* Flexbox columns */
+/* Flexbox Columns ------------------------------------------------------------------------------------*/
+
 .column {
   display: flex;
   flex-direction: column;
-  /* height: 100%; */
 }
 
 #right {
@@ -58,18 +58,15 @@ body {
 
 #left {
   background-color: #0d335d
-  /* height: 100%; */
-  /* position: relative; */
 }
 
-/* Images and divs surrounding images  */
+/* Images and divs surrounding images --------------------------------------------------------------- */
 img {
   width: 100%;
   object-fit: cover;
   margin: auto;
   justify-content: center;
   height: 300px;
-  /* height: auto; */
 } 
 
 #logo {
@@ -84,8 +81,6 @@ img {
 
 
 .event-image-div {
-  /* border-style: solid;
-  border-color: pink; */
   overflow: hidden; 
   
 }
@@ -103,8 +98,6 @@ img {
 }
 
 .all-event-image-div img {
-  /* width: 550px;
-  height: 300px; */
   width: 100%;
   height: auto;
 }
@@ -117,25 +110,15 @@ img {
 }
 
 .event-page-image img {
-  /* height: 800px; */
   width: 60%;
   height: 30%;
 }
- /* opacity: 0.5; */
-  /* height: auto; 
-  width: auto; 
-  max-width: 300px;  */
-  /* max-height: 300px; */
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  /* background-color: rgb(120, 120, 120); */
-  /* position: fixed;
-  top: 0;
-  width: 100%; */
 }
 
 li {
@@ -151,24 +134,14 @@ code {
 text-align: center
 }
 
-/* #homeH1 { */
-  /* display: flex;
-  /* align-self: flex-start; */ 
-/* } */
+/* All Divs -----------------------------------------------------------------------------------*/
 
-
-
-/* All Divs */
 .main-home {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: minmax(25vw, auto);
   grid-gap: 1vw;
   /* flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
-  /* overflow-y: auto; */
-  /* display: flex; */
-  /* flex-direction: row;  */
-  /* justify-content: space-between; */
 }
 
 .user-show {
@@ -204,7 +177,8 @@ text-align: center
   width: 60%;
 }
 
-/* Authorization pages  */
+/* Authorization pages  -----------------------------------------------------------*/
+
 .login {
   padding-left: 86px; 
 }
@@ -219,10 +193,6 @@ text-align: center
 }
 
 .performances {
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(25vw, auto);
-  grid-gap: 1vw; */
   margin-left: 40px;
   background-color: #333;
   overflow: auto;
@@ -233,18 +203,13 @@ text-align: center
   background-color: #d0a0ec
 }
 
-/* Cards */
+/* Cards --------------------------------------------------------------------------------*/
+
 .home-event-card {
-  /* border-style: solid;
-  border-color: blue; */
-  /* padding-left: 20px; */
-  /* width: 20%; */
   background-color: #d0a0ec;
 }
 
 .event-card {
-  /* border-style: solid;
-  border-color: blue; */
   background-color: #d0a0ec;
 }
 
@@ -252,6 +217,7 @@ text-align: center
   padding-left: 15px;
 }
 
+/* Navbar ------------------------------------------------------------------------------------ */
 
 .nav-button {
   margin: auto; 
@@ -284,7 +250,7 @@ text-align: center
   width: 100%;
 }
 
-/* Searchbar  */
+/* Searchbar  -----------------------------------------------------------------------------*/
 
 .search {
   margin-bottom: 20px;
@@ -292,20 +258,18 @@ text-align: center
   width: 100%;
   position: relative;
   display: flex;
-  /* float: center; */
-  /* position: center;  */
 }
 
 .searchTerm {
   width: 200px;
   border: 3px solid  #d0a0ec;
   display: block;
-  /* border-right: none; */
   padding: 5px;
   height: 20px;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
   outline: none;
   color: #9DBFAF;
+  margin-bottom: 5px
 }
 
 .searchTerm:focus{
@@ -331,7 +295,7 @@ text-align: center
   background: #d0a0ec;
   text-align: center;
   color: #fff;
-  border-radius: 0 5px 5px 0px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 20px;
   margin-top: 5px;
@@ -344,11 +308,12 @@ text-align: center
   padding-left: 40px;
 }
 
-/* Table Formatting */
+/* Table Formatting ---------------------------------------------------------------------*/
 
 table, th, td{
   border: 1px solid black;
   border-collapse: collapse;
+  margin-bottom: 30px;
 }
 
 th, td {  
@@ -360,7 +325,8 @@ td {
 }
 
 caption {
-  font-size: 24px; 
+  font-size: 30px; 
+  margin-bottom: 10px
 }
 
 .ticket-table {
