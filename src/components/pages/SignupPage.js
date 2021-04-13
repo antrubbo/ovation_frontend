@@ -6,10 +6,10 @@ function SignupPage({errors, setErrors, currentUser, setCurrentUser, baseUrl, na
     const history = useHistory()
 
     function setUserStateToQuotes() {
-        setName("")
-        setEmail("")
-        setPicture("")
-        setPassword("")
+      setName("")
+      setEmail("")
+      setPicture("")
+      setPassword("")
     }
 
     function onFormSubmit(evt) {

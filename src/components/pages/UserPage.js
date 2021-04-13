@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react"
 import {useHistory} from "react-router-dom"
 
-
 function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, baseUrl, handleLogout}) {
     const [clicked, setClicked] = useState(false)
     const [tickets, setTickets] = useState([])
@@ -28,14 +27,14 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, 
         fetch(`${process.env.REACT_APP_API_BASE_URL}/tickets/${deletedTicketId}`, {
             method: "DELETE"
         })
-            .then(r=> r.json())
-            .then(data => console.log(data))
-            .then(() => {
-                const remainingTickets = tickets.filter(ticket => {
-                    return ticket.id !== parseInt(deletedTicketId)
-                })
-                setTickets(remainingTickets)
+        .then(r=> r.json())
+        .then(data => console.log(data))
+        .then(() => {
+            const remainingTickets = tickets.filter(ticket => {
+                return ticket.id !== parseInt(deletedTicketId)
             })
+            setTickets(remainingTickets)
+        })
     }
 
     const handleEdit = (e) => {
@@ -52,15 +51,14 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, 
             email: email,
         }
 
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${currentUser.id}`, 
-            {
-                method: 'PATCH',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(formBody)
-            })
-                .then(r=> r.json())
-                .then(updatedUser => setCurrentUser(updatedUser))
-                .then(setClicked(!clicked))
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${currentUser.id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formBody)
+        })
+        .then(r=> r.json())
+        .then(updatedUser => setCurrentUser(updatedUser))
+        .then(setClicked(!clicked))
     }
        
     function handleDelete(evt) {
@@ -88,7 +86,6 @@ function UserPage({name, setName, email, setEmail, currentUser, setCurrentUser, 
     })
     
     if(currentUser){
-
     return(
         <div className="user-show">
             <h1>Welcome Back {currentUser.name}!</h1>

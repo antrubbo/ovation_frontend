@@ -1,9 +1,6 @@
 import Search from "../Search"
 import EventItem from "../EventItem"
-// import events from "src/data"
 import {useState} from "react"
-
-
 
 function EventList ( {events, shuffle} ) {
     const [searched, setSearched] = useState("")
@@ -17,9 +14,7 @@ function EventList ( {events, shuffle} ) {
        return <EventItem key={event.id} event={event}/>
     })
 
-
     return (
-
         <section id="all-events-section"> 
             <h1>Upcoming Events</h1>            
             <Search searched={searched} setSearched={setSearched} />
@@ -27,7 +22,6 @@ function EventList ( {events, shuffle} ) {
                 {allEvents} 
             </div>
         </section>
-        
     )
    
 }

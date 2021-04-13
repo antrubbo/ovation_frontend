@@ -1,7 +1,6 @@
 import ovationLogo from "../logo.jpeg"
 
 function Header () {
-
     return (
         <div className="header">
             <div id="logo-div">

@@ -1,5 +1,4 @@
 import { useHistory } from "react-router-dom"
-// import { useEffect } from "react"
 
 function LoginPage ({currentUser, setCurrentUser, email, setEmail, errors, setErrors, password, setPassword, baseUrl}) {
     const history = useHistory()

@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
 import {useHistory} from "react-router-dom"
 
 function EventItem ( {event}) {
     const history = useHistory()
     
-    const { id, name, artist, description, time, date } = event 
+    const { name, artist, date } = event 
 
     function changeOpacity(evt) {
         console.log(evt.target)
