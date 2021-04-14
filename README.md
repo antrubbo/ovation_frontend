@@ -8,7 +8,7 @@ Development has significantly slowed as we are working toward on other projects 
 
 Ovation is a site for finding events/concerts in your area. Browse events by artist, viewing past live concert events by that particular artist. 
 
-This is the front end only, as the back end (www.github.com/antrubbo/ovation_backend) was created in a separate repository for possible deployment using Heroku. 
+This is the front end only, as the back end (www.github.com/antrubbo/ovation_backend) was created in a separate repository for possible deployment using Heroku. The front end was built using React/JavaScript.
 
 Event data is supplied by songkick (www.songkick.com/developer).
 
