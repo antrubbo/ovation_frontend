@@ -14,6 +14,7 @@ The event data, provided by songkick, is real and accurate.
 
 This is the front end only. [The back end](www.github.com/antrubbo/ovation_backend) was created as a separate repository for ease of deployment. 
 
+[Check out the product demo here](https://www.loom.com/share/df43ced63503465499ab174ebe01245b)
 
 ## Technologies
 
